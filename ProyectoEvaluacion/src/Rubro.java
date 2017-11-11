@@ -1,0 +1,7 @@
+/**
+ *
+ * @author Piz
+ */
+class Rubro {
+    
+}
