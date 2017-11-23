@@ -15,8 +15,9 @@ public class Acceso extends javax.swing.JFrame {
      */
     public Acceso() {
         initComponents();
-        cmpUsuario.setLabelText("Usuario");
-        cmpUsuario.setTextFieldText("");
+        ltfUsuario.setAlignt(1);
+        ltfUsuario.setLabelText("Usuario");
+        ltfUsuario.setTextFieldText("");
     }
 
     /**
@@ -30,9 +31,9 @@ public class Acceso extends javax.swing.JFrame {
 
         btnAcceder = new javax.swing.JButton();
         lblRecPass = new javax.swing.JLabel();
-        cmpUsuario = new CustomComponents.lbltxtCentrado();
         jLabel1 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        ltfUsuario = new CustomComponents.LabelTextField();
         mnbAcceso = new javax.swing.JMenuBar();
         mnuUsuario = new javax.swing.JMenu();
         mniNuevo = new javax.swing.JMenuItem();
@@ -53,6 +54,11 @@ public class Acceso extends javax.swing.JFrame {
 
         mniNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         mniNuevo.setText("Nuevo");
+        mniNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNuevoActionPerformed(evt);
+            }
+        });
         mnuUsuario.add(mniNuevo);
 
         mniEliminar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.CTRL_MASK));
@@ -83,16 +89,17 @@ public class Acceso extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPasswordField1)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(cmpUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ltfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(58, 58, 58)
+                .addComponent(ltfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,15 +108,15 @@ public class Acceso extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(lblRecPass)
                 .addGap(7, 7, 7))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(cmpUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(186, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mniNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNuevoActionPerformed
+        
+        new Usuario.VentanaUsuario().setVisible(true);
+    }//GEN-LAST:event_mniNuevoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,10 +155,10 @@ public class Acceso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceder;
-    private CustomComponents.lbltxtCentrado cmpUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblRecPass;
+    private CustomComponents.LabelTextField ltfUsuario;
     private javax.swing.JMenuBar mnbAcceso;
     private javax.swing.JMenuItem mniEliminar;
     private javax.swing.JMenuItem mniNuevo;

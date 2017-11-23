@@ -23,13 +23,73 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="576" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="txtContraseña" max="32767" attributes="0"/>
+                  <Component id="lblContraseña" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtConfContra" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblConfContra" alignment="0" max="32767" attributes="0"/>
+                  <Component id="ltfCorreo" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ltfNombre" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="ltfUsuario" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="labelTextField2" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="367" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Component id="ltfNombre" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="ltfUsuario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblContraseña" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtContraseña" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblConfContra" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtConfContra" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="ltfCorreo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="labelTextField2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="CustomComponents.LabelTextField" name="ltfNombre">
+    </Component>
+    <Component class="CustomComponents.LabelTextField" name="ltfUsuario">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblContrase&#xf1;a">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtContrase&#xf1;a">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtConfContra">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblConfContra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a"/>
+      </Properties>
+    </Component>
+    <Component class="CustomComponents.LabelTextField" name="ltfCorreo">
+    </Component>
+    <Component class="CustomComponents.LabelTextField" name="labelTextField2">
+    </Component>
+  </SubComponents>
 </Form>
