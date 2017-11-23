@@ -4,16 +4,17 @@ package Conexion;
  */
 import java.sql.*;
 
-import java.sql.*;
-
-/**
- * @author Monillo007
- * :: Visita http://monillo007.blogspot.com ::
- */
 public class MySQL_Conexion {
 
     private Connection conexion;
-
+    
+    // DESDE UN PRINCIPOIO YA TENGA INSTANCIADA LA CONEXION, POR ESO ES 
+    // DE TIPO STATICO
+    private static String DataBase = "mysql",
+                            URL = "187.210.226.213",
+                            User = "root",
+                            Password = "orion1024";
+    
     public Connection getConexion() {
         return conexion;
     }
@@ -21,11 +22,12 @@ public class MySQL_Conexion {
     public void setConexion(Connection conexion) {
         this.conexion = conexion;
     }
-
+    
+    
     public MySQL_Conexion conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String BaseDeDatos = "jdbc:mysql://187.210.226.213/mysql?user=root&password=orion1024";
+            String BaseDeDatos = "jdbc:mysql://" + URL + "/" + DataBase, User, Password;// PIDE CARGAR UN THROWS 
             setConexion(DriverManager.getConnection(BaseDeDatos));
             if (conexion != null) {
                 System.out.println("Conexion exitosa!");
