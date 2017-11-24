@@ -6,11 +6,12 @@ package Usuario;
 public class Usuario {
     String nombre;
     String usuario;
-    String password;
+    String contrasena;
     String correo;
     String pregunta;
     String respuesta;
-
+    boolean administrador;
+    
     public String getNombre() {
         return nombre;
     }
@@ -27,12 +28,12 @@ public class Usuario {
         this.usuario = usuario;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasena(String Contrasena) {
+        this.contrasena = Contrasena;
     }
 
     public String getCorreo() {
@@ -58,5 +59,12 @@ public class Usuario {
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }
-    
+
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
 }

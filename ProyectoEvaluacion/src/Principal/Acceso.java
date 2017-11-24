@@ -76,6 +76,11 @@ public class Acceso extends javax.swing.JFrame {
         txtContraAcceso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnAcceder.setText("Acceder");
+        btnAcceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccederActionPerformed(evt);
+            }
+        });
 
         lblRecPass.setText("!!Olvide mi contraseña!!");
 
@@ -233,6 +238,10 @@ public class Acceso extends javax.swing.JFrame {
         cripi.desencriptar(ltfPreguntaAdd);
         cripi.desencriptar(ltfRespuestaAdd);
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
+        new Administrador.Admin().setVisible(true);
+    }//GEN-LAST:event_btnAccederActionPerformed
 
     /**
      * @param args the command line arguments
