@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Alumno;
 
+import Conexion.MySQL_Conexion;
+import java.sql.ResultSet;
+
 /**
- *
  * @author ING ARCADIA
  */
 public class VentanaAlumno extends javax.swing.JFrame {
@@ -17,7 +14,34 @@ public class VentanaAlumno extends javax.swing.JFrame {
     public VentanaAlumno() {
         initComponents();
     }
+    
+    public void altaAlumno(){
+        String nom = txtNombre.getText();
+        String ap1 = txtApelllidoP.getText();
+        String ap2 = txtApellidoM.getText();
+        String grup = txtGrupo.getText();
+        
+        MySQL_Conexion baseDatos = new MySQL_Conexion().conectar();
 
+        if (baseDatos.ejecutar("INSERT INTO DOCENTE(nombre,apellido,carrera) VALUES('arturo','','IGE')")) {
+            System.out.println("Ejecución correcta!");
+        } else {
+            System.out.println("Ocurrió un problema al ejecutar!");
+        }
+        ResultSet resultados = baseDatos.consultar("SELECT * FROM ALMUNO");
+        if (resultados != null) {
+            try {
+                System.out.println("NOMBRE       APELLIDOP      APELLIDOM       CARRERA");
+                System.out.println("---------------------------------------------------------");
+                while (resultados.next()) {
+                    System.out.println("" + resultados.getString("nombre") + "       " + resultados.getString("apellidop")+ "       " + resultados.getString("apellidom")+ "      " + resultados.getString("grupo"));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
