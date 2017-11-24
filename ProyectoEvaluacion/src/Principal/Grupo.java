@@ -1,3 +1,9 @@
+package Principal;
+
+
+import Alumno.Alumno;
+import Rubro.Rubro;
+
 /**
  * 
  * @author Piz
