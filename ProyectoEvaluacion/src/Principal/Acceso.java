@@ -11,15 +11,31 @@ package Principal;
  * @author Piz
  */
 public class Acceso extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Acceso
-     */
+    Encriptador cripi = new Encriptador();
+   
     public Acceso() {
         initComponents();
-        ltfUsuario.setAlignt(1);
-        ltfUsuario.setLabelText("Usuario");
-        ltfUsuario.setTextFieldText("");
+        
+        setLocationRelativeTo(null);
+         
+        ltfUsuarioAccesso.setAlignt(1);
+        ltfUsuarioAccesso.setLabelText("Usuario");
+        ltfUsuarioAccesso.setTextFieldText("");
+        
+        ltfNombreAdd.setLabelText("Nombre");
+        ltfNombreAdd.setTextFieldText("");
+        
+        ltfUsuarioAdd.setLabelText("Usuario");
+        ltfUsuarioAdd.setTextFieldText("");
+        
+        ltfCorreoAdd.setLabelText("Correo");
+        ltfCorreoAdd.setTextFieldText("");
+        
+        ltfPreguntaAdd.setLabelText("Pregunta");
+        ltfPreguntaAdd.setTextFieldText("");
+        
+        ltfRespuestaAdd.setLabelText("Respuesta");
+        ltfRespuestaAdd.setTextFieldText("");
     }
 
     /**
@@ -31,94 +47,192 @@ public class Acceso extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        pnlAcceso = new javax.swing.JPanel();
+        ltfUsuarioAccesso = new CustomComponents.LabelTextField();
+        lblContraAcceso = new javax.swing.JLabel();
+        txtContraAcceso = new javax.swing.JPasswordField();
         btnAcceder = new javax.swing.JButton();
         lblRecPass = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        ltfUsuario = new CustomComponents.LabelTextField();
-        mnbAcceso = new javax.swing.JMenuBar();
-        mnuUsuario = new javax.swing.JMenu();
-        mniNuevo = new javax.swing.JMenuItem();
-        mniEliminar = new javax.swing.JMenuItem();
+        pnlAgregarUsuario = new javax.swing.JPanel();
+        ltfNombreAdd = new CustomComponents.LabelTextField();
+        ltfUsuarioAdd = new CustomComponents.LabelTextField();
+        lblContraseñaAdd = new javax.swing.JLabel();
+        txtContrasenaAdd = new javax.swing.JPasswordField();
+        lblConfContraAdd = new javax.swing.JLabel();
+        txtConfContraAdd = new javax.swing.JPasswordField();
+        ltfCorreoAdd = new CustomComponents.LabelTextField();
+        ltfPreguntaAdd = new CustomComponents.LabelTextField();
+        ltfRespuestaAdd = new CustomComponents.LabelTextField();
+        chkAdminAdd = new javax.swing.JCheckBox();
+        btnAccion = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblContraAcceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblContraAcceso.setText("Contraseña");
+
+        txtContraAcceso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnAcceder.setText("Acceder");
 
         lblRecPass.setText("!!Olvide mi contraseña!!");
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Contraseña");
+        javax.swing.GroupLayout pnlAccesoLayout = new javax.swing.GroupLayout(pnlAcceso);
+        pnlAcceso.setLayout(pnlAccesoLayout);
+        pnlAccesoLayout.setHorizontalGroup(
+            pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAccesoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ltfUsuarioAccesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtContraAcceso)
+                    .addComponent(lblContraAcceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(pnlAccesoLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(btnAcceder)
+                .addContainerGap(118, Short.MAX_VALUE))
+            .addGroup(pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAccesoLayout.createSequentialGroup()
+                    .addContainerGap(89, Short.MAX_VALUE)
+                    .addComponent(lblRecPass)
+                    .addGap(88, 88, 88)))
+        );
+        pnlAccesoLayout.setVerticalGroup(
+            pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAccesoLayout.createSequentialGroup()
+                .addContainerGap(92, Short.MAX_VALUE)
+                .addComponent(ltfUsuarioAccesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblContraAcceso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtContraAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAcceder)
+                .addGap(86, 86, 86))
+            .addGroup(pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAccesoLayout.createSequentialGroup()
+                    .addContainerGap(314, Short.MAX_VALUE)
+                    .addComponent(lblRecPass)
+                    .addContainerGap()))
+        );
 
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTabbedPane1.addTab("Acceso", pnlAcceso);
 
-        mnuUsuario.setText("Usuario");
+        lblContraseñaAdd.setText("Contraseña");
 
-        mniNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        mniNuevo.setText("Nuevo");
-        mniNuevo.addActionListener(new java.awt.event.ActionListener() {
+        lblConfContraAdd.setText("Confirmar contraseña");
+
+        chkAdminAdd.setText("Administrador");
+
+        btnAccion.setText("Agregar");
+        btnAccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniNuevoActionPerformed(evt);
+                btnAccionActionPerformed(evt);
             }
         });
-        mnuUsuario.add(mniNuevo);
 
-        mniEliminar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.CTRL_MASK));
-        mniEliminar.setText("Eliminar");
-        mnuUsuario.add(mniEliminar);
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        mnbAcceso.add(mnuUsuario);
+        javax.swing.GroupLayout pnlAgregarUsuarioLayout = new javax.swing.GroupLayout(pnlAgregarUsuario);
+        pnlAgregarUsuario.setLayout(pnlAgregarUsuarioLayout);
+        pnlAgregarUsuarioLayout.setHorizontalGroup(
+            pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                        .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ltfCorreoAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ltfNombreAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblContraseñaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtContrasenaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblConfContraAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ltfUsuarioAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtConfContraAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                        .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ltfPreguntaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chkAdminAdd))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ltfRespuestaAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(btnAccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        pnlAgregarUsuarioLayout.setVerticalGroup(
+            pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ltfNombreAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ltfUsuarioAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConfContraAdd)
+                    .addComponent(lblContraseñaAdd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtConfContraAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContrasenaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ltfCorreoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ltfPreguntaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ltfRespuestaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkAdminAdd)
+                    .addComponent(btnAccion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addContainerGap())
+        );
 
-        setJMenuBar(mnbAcceso);
+        jTabbedPane1.addTab("Agregar Usuario", pnlAgregarUsuario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(btnAcceder)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 89, Short.MAX_VALUE)
-                .addComponent(lblRecPass)
-                .addGap(88, 88, 88))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPasswordField1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ltfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(ltfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnAcceder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(lblRecPass)
-                .addGap(7, 7, 7))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mniNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNuevoActionPerformed
-        
-        new Usuario.VentanaUsuario().setVisible(true);
-    }//GEN-LAST:event_mniNuevoActionPerformed
+    private void btnAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccionActionPerformed
+        cripi.encriptar(ltfPreguntaAdd);
+        cripi.encriptar(ltfRespuestaAdd);     
+    }//GEN-LAST:event_btnAccionActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        cripi.desencriptar(ltfPreguntaAdd);
+        cripi.desencriptar(ltfRespuestaAdd);
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,13 +271,24 @@ public class Acceso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceder;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JButton btnAccion;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JCheckBox chkAdminAdd;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblConfContraAdd;
+    private javax.swing.JLabel lblContraAcceso;
+    private javax.swing.JLabel lblContraseñaAdd;
     private javax.swing.JLabel lblRecPass;
-    private CustomComponents.LabelTextField ltfUsuario;
-    private javax.swing.JMenuBar mnbAcceso;
-    private javax.swing.JMenuItem mniEliminar;
-    private javax.swing.JMenuItem mniNuevo;
-    private javax.swing.JMenu mnuUsuario;
+    private CustomComponents.LabelTextField ltfCorreoAdd;
+    private CustomComponents.LabelTextField ltfNombreAdd;
+    private CustomComponents.LabelTextField ltfPreguntaAdd;
+    private CustomComponents.LabelTextField ltfRespuestaAdd;
+    private CustomComponents.LabelTextField ltfUsuarioAccesso;
+    private CustomComponents.LabelTextField ltfUsuarioAdd;
+    private javax.swing.JPanel pnlAcceso;
+    private javax.swing.JPanel pnlAgregarUsuario;
+    private javax.swing.JPasswordField txtConfContraAdd;
+    private javax.swing.JPasswordField txtContraAcceso;
+    private javax.swing.JPasswordField txtContrasenaAdd;
     // End of variables declaration//GEN-END:variables
 }
