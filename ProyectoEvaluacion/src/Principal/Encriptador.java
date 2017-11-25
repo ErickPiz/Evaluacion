@@ -1,6 +1,5 @@
 package Principal;
 
-import CustomComponents.LabelTextField;
 import java.awt.Component;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -34,12 +33,12 @@ public class Encriptador {
             Logger.getLogger(Encriptador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void encriptar(LabelTextField txt){
+    public void encriptar(JTextField txt){
         try {
             cifrador.init(Cipher.ENCRYPT_MODE,keyes);
-            byte[] aEncritar =txt.getTextFieldText().getBytes();
-            texto=cifrador.doFinal(txt.getTextFieldText().getBytes());
-            txt.setTextFieldText( String.valueOf(cifrador.doFinal(txt.getTextFieldText().getBytes())));
+            byte[] aEncritar =txt.getText().getBytes();
+            texto=cifrador.doFinal(txt.getText().getBytes());
+            txt.setText( String.valueOf(cifrador.doFinal(txt.getText().getBytes())));
         } catch (InvalidKeyException ex) {
             Logger.getLogger(Encriptador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalBlockSizeException ex) {
@@ -48,11 +47,11 @@ public class Encriptador {
             Logger.getLogger(Encriptador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void desencriptar(LabelTextField txt){
+    public void desencriptar(JTextField txt){
         try {
             cifrador.init(Cipher.DECRYPT_MODE,keyes);
-            byte[] desencriptado = cifrador.doFinal(txt.getTextFieldText().getBytes());
-            txt.setTextFieldText(new String(desencriptado));
+            byte[] desencriptado = cifrador.doFinal(txt.getText().getBytes());
+            txt.setText(new String(desencriptado));
         } catch (InvalidKeyException ex) {
             Logger.getLogger(Encriptador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalBlockSizeException ex) {
