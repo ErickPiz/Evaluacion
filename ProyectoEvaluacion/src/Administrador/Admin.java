@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Administrador;
-
 /**
- *
  * @author ING ARCADIA
  */
+import Conexion.*;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
+
 public class Admin extends javax.swing.JFrame {
 
     /**
@@ -16,8 +16,144 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
+        mostrarDatosMateria("");
+        mostrarDatosRubro();
+        mostrarDatosAlumnos();
+        mostrarDatosUsuarios();
     }
-
+    
+    public void mostrarDatosMateria(String valor){
+       DefaultTableModel modelo = new DefaultTableModel();
+       //CREANDO LAS COLUMNAS DE LA TABLA MATERIA
+       modelo.addColumn("ID");
+       modelo.addColumn("MATERIA");
+       modelo.addColumn("CREDITOS");
+       
+       //IMPRMIR LOS TITULOS DE LA TABLA
+       tbMateria.setModel(modelo);
+       String sql = "";
+       
+       if(valor.equals("")){
+           sql = "SELECT * FROM materia";
+       }else{
+           sql = "SELECT * FROM materia WHERE nombre = '"+valor+"'";
+       }
+       //VARIABLE PARA MOSTRAR LOS DATOS EN EL while
+       String []datos = new String[3];
+        try {
+            //CREAR UN OBJ TIPO Statement
+            Statement st = cn.createStatement();
+            //CREAR UN ResultSet ALMACENA LOS DATOS DE LA CONSULTA QUE SE REALIZARA
+            ResultSet rs = st.executeQuery(sql);
+            //MOSTRAR LOS DATOS CON UN while
+            while(rs.next()){
+                datos[0] = rs.getString(1);// TAMBIEN "idMateria" COMO PARAMETRO
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                //AGREGRAR LA FILA DEL VECTOR DATOS
+                modelo.addRow(datos);
+            }
+            //MOSTRAR LOS DATOS
+            tbMateria.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mostrarDatosRubro(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("RUBRO");
+        modelo.addColumn("PONERACIÓN");
+        
+        tbRubro.setModel(modelo);
+        //CREO UN OBJETO PARA MANDAR LOS DIFERENTES TIPOS DE ATRIBUTOS
+        Object []datos = new Object[3];
+        
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT *FROM rubro");
+            
+            while(rs.next()){
+                datos[0] = rs.getInt(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getInt(3);
+                
+                modelo.addRow(datos);
+            }
+            tbRubro.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+    
+    public void mostrarDatosAlumnos(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO P");
+        modelo.addColumn("APELLIDO M");
+        modelo.addColumn("GRUPO");
+        
+        tbAlumno.setModel(modelo);
+        
+        Object []datos = new Object[5];
+        
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM alumno");
+            
+            while(rs.next()){
+                datos[0] = rs.getInt(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                
+                modelo.addRow(datos);
+            }
+            tbAlumno.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mostrarDatosUsuarios(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("USUARIO");
+        modelo.addColumn("PASSWORD");
+        
+         tbUsuario.setModel(modelo);
+         Object []datos = new Object[3];
+         
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM docente");
+            
+            while(rs.next()){
+                datos[0] = rs.getInt(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                
+                modelo.addRow(datos);
+            }
+            tbUsuario.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void buscarDato(){
+    
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,19 +169,21 @@ public class Admin extends javax.swing.JFrame {
         lblMateria = new javax.swing.JLabel();
         txtMateria = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMateria = new javax.swing.JTable();
+        tbMateria = new javax.swing.JTable();
         lblCreditos = new javax.swing.JLabel();
         txtCreditos = new javax.swing.JTextField();
+        txtBuscar1 = new javax.swing.JTextField();
+        btnBuscar1 = new javax.swing.JButton();
         Inferior1 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnGuardar1 = new javax.swing.JButton();
+        btnModificar1 = new javax.swing.JButton();
+        btnEliminar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         contenedor2 = new javax.swing.JPanel();
         lblRubro = new javax.swing.JLabel();
         txtRubro = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableMateria1 = new javax.swing.JTable();
+        tbRubro = new javax.swing.JTable();
         lblPoneracion = new javax.swing.JLabel();
         txtPoneracion = new javax.swing.JTextField();
         Inferior2 = new javax.swing.JPanel();
@@ -57,7 +195,7 @@ public class Admin extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTableMateria2 = new javax.swing.JTable();
+        tbAlumno = new javax.swing.JTable();
         lblAP = new javax.swing.JLabel();
         txtApellidoP = new javax.swing.JTextField();
         lblAM = new javax.swing.JLabel();
@@ -74,7 +212,7 @@ public class Admin extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTableMateria3 = new javax.swing.JTable();
+        tbUsuario = new javax.swing.JTable();
         lblPass = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         Inferior4 = new javax.swing.JPanel();
@@ -92,22 +230,26 @@ public class Admin extends javax.swing.JFrame {
         lblMateria.setForeground(new java.awt.Color(204, 204, 204));
         lblMateria.setText("Nombre");
 
-        jTableMateria.setModel(new javax.swing.table.DefaultTableModel(
+        tbMateria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTableMateria);
+        jScrollPane1.setViewportView(tbMateria);
 
         lblCreditos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCreditos.setForeground(new java.awt.Color(204, 204, 204));
         lblCreditos.setText("Creditos");
+
+        btnBuscar1.setText("BUSCAR");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenedor1Layout = new javax.swing.GroupLayout(contenedor1);
         contenedor1.setLayout(contenedor1Layout);
@@ -119,13 +261,20 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(contenedor1Layout.createSequentialGroup()
                         .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67)
-                        .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(80, Short.MAX_VALUE))))
+                            .addGroup(contenedor1Layout.createSequentialGroup()
+                                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(67, 67, 67)
+                                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(contenedor1Layout.createSequentialGroup()
+                                .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar1)))
+                        .addGap(0, 53, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         contenedor1Layout.setVerticalGroup(
             contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,33 +288,37 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(txtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar1))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         Inferior1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnGuardar.setText("GUARDAR");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar1.setText("GUARDAR");
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnGuardar1ActionPerformed(evt);
             }
         });
 
-        btnModificar.setText("MODIFICAR");
+        btnModificar1.setText("MODIFICAR");
 
-        btnEliminar.setText("ELIMINAR");
+        btnEliminar1.setText("ELIMINAR");
 
         javax.swing.GroupLayout Inferior1Layout = new javax.swing.GroupLayout(Inferior1);
         Inferior1.setLayout(Inferior1Layout);
         Inferior1Layout.setHorizontalGroup(
             Inferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Inferior1Layout.createSequentialGroup()
-                .addComponent(btnGuardar)
+                .addComponent(btnGuardar1)
                 .addGap(42, 42, 42)
-                .addComponent(btnModificar)
+                .addComponent(btnModificar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminar)
+                .addComponent(btnEliminar1)
                 .addContainerGap())
         );
         Inferior1Layout.setVerticalGroup(
@@ -173,9 +326,9 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Inferior1Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(Inferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnGuardar1)
+                    .addComponent(btnModificar1)
+                    .addComponent(btnEliminar1))
                 .addContainerGap())
         );
 
@@ -209,18 +362,15 @@ public class Admin extends javax.swing.JFrame {
         lblRubro.setForeground(new java.awt.Color(204, 204, 204));
         lblRubro.setText("Nombre");
 
-        jTableMateria1.setModel(new javax.swing.table.DefaultTableModel(
+        tbRubro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane2.setViewportView(jTableMateria1);
+        jScrollPane2.setViewportView(tbRubro);
 
         lblPoneracion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPoneracion.setForeground(new java.awt.Color(204, 204, 204));
@@ -327,18 +477,15 @@ public class Admin extends javax.swing.JFrame {
         lblNombre.setForeground(new java.awt.Color(204, 204, 204));
         lblNombre.setText("Nombre");
 
-        jTableMateria2.setModel(new javax.swing.table.DefaultTableModel(
+        tbAlumno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane3.setViewportView(jTableMateria2);
+        jScrollPane3.setViewportView(tbAlumno);
 
         lblAP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAP.setForeground(new java.awt.Color(204, 204, 204));
@@ -480,18 +627,15 @@ public class Admin extends javax.swing.JFrame {
         lblUsuario.setForeground(new java.awt.Color(204, 204, 204));
         lblUsuario.setText("Usuario");
 
-        jTableMateria3.setModel(new javax.swing.table.DefaultTableModel(
+        tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane4.setViewportView(jTableMateria3);
+        jScrollPane4.setViewportView(tbUsuario);
 
         lblPass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPass.setForeground(new java.awt.Color(204, 204, 204));
@@ -620,9 +764,19 @@ public class Admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        try {
+            PreparedStatement obj1 = cn.prepareStatement("INSERT INTO mysql.materia(nombre, creditos) VALUES(?,?)");
+            obj1.setString(1, txtMateria.getText());
+            obj1.setString(2, txtCreditos.getText());
+            //PARA INSERTAR, MODIFICAR Y ELIMINAR executeUpdate
+            obj1.executeUpdate();
+            //MOSTRAR EN EL datagri
+            mostrarDatosMateria("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar2ActionPerformed
         // TODO add your handling code here:
@@ -636,6 +790,18 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar4ActionPerformed
 
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        mostrarDatosMateria(txtBuscar1.getText());
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -676,15 +842,16 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel Inferior2;
     private javax.swing.JPanel Inferior3;
     private javax.swing.JPanel Inferior4;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnEliminar2;
     private javax.swing.JButton btnEliminar3;
     private javax.swing.JButton btnEliminar4;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnGuardar2;
     private javax.swing.JButton btnGuardar3;
     private javax.swing.JButton btnGuardar4;
-    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnModificar1;
     private javax.swing.JButton btnModificar2;
     private javax.swing.JButton btnModificar3;
     private javax.swing.JButton btnModificar4;
@@ -702,10 +869,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTableMateria;
-    private javax.swing.JTable jTableMateria1;
-    private javax.swing.JTable jTableMateria2;
-    private javax.swing.JTable jTableMateria3;
     private javax.swing.JLabel lblAM;
     private javax.swing.JLabel lblAP;
     private javax.swing.JLabel lblApellido;
@@ -717,9 +880,14 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel lblPoneracion;
     private javax.swing.JLabel lblRubro;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JTable tbAlumno;
+    private javax.swing.JTable tbMateria;
+    private javax.swing.JTable tbRubro;
+    private javax.swing.JTable tbUsuario;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
     private javax.swing.JTextField txtApellidoP2;
+    private javax.swing.JTextField txtBuscar1;
     private javax.swing.JTextField txtCreditos;
     private javax.swing.JTextField txtMateria;
     private javax.swing.JTextField txtNombre;
@@ -728,4 +896,12 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField txtRubro;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    ///////////////////////////////////////////////////////////////////
+    conectar cc = new conectar();
+    Connection cn = cc.conexion(); 
+    
+    /*    MySQL_Conexion cc = new MySQL_Conexion();
+    Connection cn = cc.getConexion();*/ 
+    ///////////////////////////////////////////////////////////////////
 }

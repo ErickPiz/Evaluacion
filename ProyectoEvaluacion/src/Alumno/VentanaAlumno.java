@@ -23,7 +23,7 @@ public class VentanaAlumno extends javax.swing.JFrame {
         
         MySQL_Conexion baseDatos = new MySQL_Conexion().conectar();
 
-        if (baseDatos.ejecutar("INSERT INTO DOCENTE(nombre,apellido,carrera) VALUES('arturo','','IGE')")) {
+        if (baseDatos.ejecutar("INSERT INTO ALUMNO(nombre,apellido,carrera) VALUES('"+txtNombre+"','"+txtApelllidoP+"','"+txtApellidoM+"','"+txtGrupo+")")) {
             System.out.println("Ejecución correcta!");
         } else {
             System.out.println("Ocurrió un problema al ejecutar!");
@@ -67,7 +67,7 @@ public class VentanaAlumno extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alta Alumno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 102))); // NOI18N
 
-        btnGuardar.setText("jButton1");
+        btnGuardar.setText("ALTA");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -89,14 +89,6 @@ public class VentanaAlumno extends javax.swing.JFrame {
         lblgrupo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblgrupo.setForeground(new java.awt.Color(255, 255, 255));
         lblgrupo.setText("GRUPO");
-
-        txtNombre.setText("jTextField1");
-
-        txtApelllidoP.setText("jTextField2");
-
-        txtApellidoM.setText("jTextField3");
-
-        txtGrupo.setText("jTextField4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,9 +115,9 @@ public class VentanaAlumno extends javax.swing.JFrame {
                     .addComponent(lblapellidom)
                     .addComponent(txtApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblgrupo)
-                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblgrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtGrupo))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -169,7 +161,7 @@ public class VentanaAlumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        altaAlumno();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**

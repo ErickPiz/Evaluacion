@@ -240,6 +240,7 @@ public class Acceso extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
+        //new Administrador.Admin().setVisible(true);
         new Administrador.Admin().setVisible(true);
     }//GEN-LAST:event_btnAccederActionPerformed
 
