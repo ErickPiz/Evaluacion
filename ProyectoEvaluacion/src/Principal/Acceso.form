@@ -26,7 +26,6 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,22 +56,32 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ltfUsuarioAccesso" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtContraAcceso" max="32767" attributes="0"/>
-                          <Component id="lblContraAcceso" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="btnAcceder" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="105" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtContraAcceso" max="32767" attributes="0"/>
+                                  <Component id="lblContraAcceso" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="btnAcceder" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="118" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="89" max="32767" attributes="0"/>
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                           <Component id="lblRecPass" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       </Group>
@@ -83,7 +92,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="92" max="32767" attributes="0"/>
-                      <Component id="ltfUsuarioAccesso" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblContraAcceso" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -103,8 +114,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="CustomComponents.LabelTextField" name="ltfUsuarioAccesso">
-            </Component>
             <Component class="javax.swing.JLabel" name="lblContraAcceso">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -129,6 +138,14 @@
                 <Property name="text" type="java.lang.String" value="!!Olvide mi contrase&#xf1;a!!"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JTextField" name="jTextField1">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Usuario"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pnlAgregarUsuario">
@@ -143,106 +160,172 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtCorreoAdd" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="ltfCorreoAdd" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ltfNombreAdd" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                                          <Component id="lblContraseñaAdd" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                                          <Component id="txtContrasenaAdd" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblConfContraAdd" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
-                                          <Component id="ltfUsuarioAdd" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                                          <Component id="txtConfContraAdd" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Component id="lblNombreAdd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblUsuarioAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtUsuarioAdd" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblPreguntaAdd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ltfPreguntaAdd" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
-                                  <Component id="chkAdminAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRespuestaAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtRespuestaAdd" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ltfRespuestaAdd" alignment="1" pref="139" max="32767" attributes="0"/>
-                                  <Component id="btnAccion" alignment="1" pref="139" max="32767" attributes="0"/>
-                                  <Component id="btnBuscar" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCorreoAdd" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="chkAdminAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="chkEditar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnAccion" min="-2" pref="139" max="-2" attributes="0"/>
+                                          <Component id="btnBuscar" min="-2" pref="139" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtPreguntaAdd" max="32767" attributes="0"/>
+                                          <Component id="txtNombreAdd" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblContrasenaAdd" min="-2" pref="137" max="-2" attributes="0"/>
+                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lblConfContAdd" min="-2" pref="139" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtContrasenaAdd" min="-2" pref="139" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtConfContraAdd" min="-2" pref="139" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="ltfNombreAdd" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="ltfUsuarioAdd" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblNombreAdd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtNombreAdd" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lblUsuarioAdd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtUsuarioAdd" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblConfContraAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblContraseñaAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblContrasenaAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblConfContAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtConfContraAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtContrasenaAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtConfContraAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="ltfCorreoAdd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="lblCorreoAdd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtCorreoAdd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="ltfPreguntaAdd" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="ltfRespuestaAdd" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblPreguntaAdd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPreguntaAdd" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lblRespuestaAdd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtRespuestaAdd" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="chkAdminAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnAccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkAdminAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="CustomComponents.LabelTextField" name="ltfNombreAdd">
+            <Component class="javax.swing.JLabel" name="lblNombreAdd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre"/>
+              </Properties>
             </Component>
-            <Component class="CustomComponents.LabelTextField" name="ltfUsuarioAdd">
+            <Component class="javax.swing.JTextField" name="txtNombreAdd">
             </Component>
-            <Component class="javax.swing.JLabel" name="lblContrase&#xf1;aAdd">
+            <Component class="javax.swing.JLabel" name="lblUsuarioAdd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usuario"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtUsuarioAdd">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblContrasenaAdd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtContrasenaAdd">
             </Component>
-            <Component class="javax.swing.JLabel" name="lblConfContraAdd">
+            <Component class="javax.swing.JLabel" name="lblConfContAdd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtConfContraAdd">
             </Component>
-            <Component class="CustomComponents.LabelTextField" name="ltfCorreoAdd">
+            <Component class="javax.swing.JLabel" name="lblCorreoAdd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Correo"/>
+              </Properties>
             </Component>
-            <Component class="CustomComponents.LabelTextField" name="ltfPreguntaAdd">
+            <Component class="javax.swing.JTextField" name="txtCorreoAdd">
             </Component>
-            <Component class="CustomComponents.LabelTextField" name="ltfRespuestaAdd">
+            <Component class="javax.swing.JLabel" name="lblPreguntaAdd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pregunta"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtPreguntaAdd">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblRespuestaAdd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Respuesta"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtRespuestaAdd">
             </Component>
             <Component class="javax.swing.JCheckBox" name="chkAdminAdd">
               <Properties>
@@ -263,6 +346,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chkEditar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="chkEditarItemStateChanged"/>
               </Events>
             </Component>
           </SubComponents>

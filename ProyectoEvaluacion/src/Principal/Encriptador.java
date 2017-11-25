@@ -38,8 +38,8 @@ public class Encriptador {
         try {
             cifrador.init(Cipher.ENCRYPT_MODE,keyes);
             byte[] aEncritar =txt.getTextFieldText().getBytes();
-            texto=cifrador.doFinal(aEncritar);
-            txt.setTextFieldText(new String(cifrador.doFinal(txt.getTextFieldText().getBytes())));
+            texto=cifrador.doFinal(txt.getTextFieldText().getBytes());
+            txt.setTextFieldText( String.valueOf(cifrador.doFinal(txt.getTextFieldText().getBytes())));
         } catch (InvalidKeyException ex) {
             Logger.getLogger(Encriptador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalBlockSizeException ex) {
@@ -51,7 +51,7 @@ public class Encriptador {
     public void desencriptar(LabelTextField txt){
         try {
             cifrador.init(Cipher.DECRYPT_MODE,keyes);
-            byte[] desencriptado = cifrador.doFinal(texto);
+            byte[] desencriptado = cifrador.doFinal(txt.getTextFieldText().getBytes());
             txt.setTextFieldText(new String(desencriptado));
         } catch (InvalidKeyException ex) {
             Logger.getLogger(Encriptador.class.getName()).log(Level.SEVERE, null, ex);
