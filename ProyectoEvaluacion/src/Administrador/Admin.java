@@ -123,11 +123,12 @@ public class Admin extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel();
         
         modelo.addColumn("ID");
+        modelo.addColumn("NOMBRE");
         modelo.addColumn("USUARIO");
         modelo.addColumn("PASSWORD");
         
          tbUsuario.setModel(modelo);
-         Object []datos = new Object[3];
+         Object []datos = new Object[5];
          
         try {
             Statement st = cn.createStatement();
@@ -137,6 +138,8 @@ public class Admin extends javax.swing.JFrame {
                 datos[0] = rs.getInt(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
                 
                 modelo.addRow(datos);
             }
@@ -146,14 +149,7 @@ public class Admin extends javax.swing.JFrame {
         }
         
     }
-    
-    public void buscarDato(){
-    
-    }
-    
-    
-    
-    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,6 +182,8 @@ public class Admin extends javax.swing.JFrame {
         tbRubro = new javax.swing.JTable();
         lblPoneracion = new javax.swing.JLabel();
         txtPoneracion = new javax.swing.JTextField();
+        txtBuscar2 = new javax.swing.JTextField();
+        btnBuscar2 = new javax.swing.JButton();
         Inferior2 = new javax.swing.JPanel();
         btnGuardar2 = new javax.swing.JButton();
         btnModificar2 = new javax.swing.JButton();
@@ -201,20 +199,33 @@ public class Admin extends javax.swing.JFrame {
         lblAM = new javax.swing.JLabel();
         txtApellidoM = new javax.swing.JTextField();
         lblGrupo = new javax.swing.JLabel();
-        txtApellidoP2 = new javax.swing.JTextField();
+        txtGrupo = new javax.swing.JTextField();
         lblApellido = new javax.swing.JLabel();
+        txtBuscar3 = new javax.swing.JTextField();
+        btnBuscar3 = new javax.swing.JButton();
         Inferior3 = new javax.swing.JPanel();
         btnGuardar3 = new javax.swing.JButton();
         btnModificar3 = new javax.swing.JButton();
         btnEliminar3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        contenedor4 = new javax.swing.JPanel();
+        lblnomDocente = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbUsuario = new javax.swing.JTable();
         lblPass = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
+        txtBuscar5 = new javax.swing.JTextField();
+        btnBuscar4 = new javax.swing.JButton();
+        lblPass1 = new javax.swing.JLabel();
+        txtnombreDocente = new javax.swing.JTextField();
+        lblPass2 = new javax.swing.JLabel();
+        txtEmail1 = new javax.swing.JTextField();
+        lblUsuario1 = new javax.swing.JLabel();
+        txtPreg = new javax.swing.JTextField();
+        lblUsuario2 = new javax.swing.JLabel();
+        txtResp = new javax.swing.JTextField();
+        chboxAdm = new javax.swing.JCheckBox();
         Inferior4 = new javax.swing.JPanel();
         btnGuardar4 = new javax.swing.JButton();
         btnModificar4 = new javax.swing.JButton();
@@ -376,6 +387,13 @@ public class Admin extends javax.swing.JFrame {
         lblPoneracion.setForeground(new java.awt.Color(204, 204, 204));
         lblPoneracion.setText("Poneración");
 
+        btnBuscar2.setText("BUSCAR");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenedor2Layout = new javax.swing.GroupLayout(contenedor2);
         contenedor2.setLayout(contenedor2Layout);
         contenedor2Layout.setHorizontalGroup(
@@ -386,13 +404,19 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(contenedor2Layout.createSequentialGroup()
                         .addGroup(contenedor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67)
-                        .addGroup(contenedor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPoneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPoneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 74, Short.MAX_VALUE)))
+                            .addGroup(contenedor2Layout.createSequentialGroup()
+                                .addGroup(contenedor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRubro, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(67, 67, 67)
+                                .addGroup(contenedor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPoneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPoneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(contenedor2Layout.createSequentialGroup()
+                                .addComponent(txtBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar2)))
+                        .addGap(0, 53, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         contenedor2Layout.setVerticalGroup(
@@ -407,8 +431,12 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(txtRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPoneracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(contenedor2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar2))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         Inferior2.setBackground(new java.awt.Color(255, 255, 255));
@@ -462,8 +490,8 @@ public class Admin extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(contenedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contenedor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Inferior2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
@@ -499,14 +527,31 @@ public class Admin extends javax.swing.JFrame {
         lblGrupo.setForeground(new java.awt.Color(204, 204, 204));
         lblGrupo.setText("Grupo");
 
+        txtGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGrupoActionPerformed(evt);
+            }
+        });
+
         lblApellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblApellido.setForeground(new java.awt.Color(204, 204, 204));
         lblApellido.setText("Apellido");
+
+        btnBuscar3.setText("BUSCAR");
+        btnBuscar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenedor3Layout = new javax.swing.GroupLayout(contenedor3);
         contenedor3.setLayout(contenedor3Layout);
         contenedor3Layout.setHorizontalGroup(
             contenedor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
             .addGroup(contenedor3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(contenedor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,13 +573,14 @@ public class Admin extends javax.swing.JFrame {
                                 .addComponent(txtApellidoM)))
                         .addGap(18, 52, Short.MAX_VALUE)
                         .addGroup(contenedor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtApellidoP2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(contenedor3Layout.createSequentialGroup()
+                        .addComponent(txtBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedor3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(180, 180, 180))
         );
         contenedor3Layout.setVerticalGroup(
             contenedor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,10 +601,14 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidoP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(contenedor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar3))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         Inferior3.setBackground(new java.awt.Color(255, 255, 255));
@@ -620,8 +670,8 @@ public class Admin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Alumnos", jPanel3);
 
-        contenedor4.setBackground(new java.awt.Color(48, 63, 159));
-        contenedor4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alta Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        lblnomDocente.setBackground(new java.awt.Color(48, 63, 159));
+        lblnomDocente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alta Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(204, 204, 204));
@@ -641,39 +691,128 @@ public class Admin extends javax.swing.JFrame {
         lblPass.setForeground(new java.awt.Color(204, 204, 204));
         lblPass.setText("Password");
 
-        javax.swing.GroupLayout contenedor4Layout = new javax.swing.GroupLayout(contenedor4);
-        contenedor4.setLayout(contenedor4Layout);
-        contenedor4Layout.setHorizontalGroup(
-            contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedor4Layout.createSequentialGroup()
+        btnBuscar4.setText("BUSCAR");
+        btnBuscar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar4ActionPerformed(evt);
+            }
+        });
+
+        lblPass1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPass1.setForeground(new java.awt.Color(204, 204, 204));
+        lblPass1.setText("Nombre");
+
+        lblPass2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPass2.setForeground(new java.awt.Color(204, 204, 204));
+        lblPass2.setText("email");
+
+        lblUsuario1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUsuario1.setForeground(new java.awt.Color(204, 204, 204));
+        lblUsuario1.setText("Pregunta");
+
+        lblUsuario2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUsuario2.setForeground(new java.awt.Color(204, 204, 204));
+        lblUsuario2.setText("Respuesta");
+
+        chboxAdm.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        chboxAdm.setForeground(new java.awt.Color(204, 204, 204));
+        chboxAdm.setText("Administrador");
+        chboxAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chboxAdmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout lblnomDocenteLayout = new javax.swing.GroupLayout(lblnomDocente);
+        lblnomDocente.setLayout(lblnomDocenteLayout);
+        lblnomDocenteLayout.setHorizontalGroup(
+            lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblnomDocenteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addGroup(contenedor4Layout.createSequentialGroup()
-                        .addGroup(contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67)
-                        .addGroup(contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 74, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                            .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                                        .addComponent(txtBuscar5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBuscar4))
+                                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblnomDocenteLayout.createSequentialGroup()
+                        .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPreg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtResp, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chboxAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(36, 36, 36))
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPass2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        contenedor4Layout.setVerticalGroup(
-            contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedor4Layout.createSequentialGroup()
+        lblnomDocenteLayout.setVerticalGroup(
+            lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblnomDocenteLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuario)
-                    .addComponent(lblPass))
+                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(lblUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(lblPass1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtnombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(lblPass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(lblPass2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(chboxAdm)
+                        .addGap(18, 18, 18)))
+                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(lblUsuario1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPreg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(lblnomDocenteLayout.createSequentialGroup()
+                        .addComponent(lblUsuario2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtResp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contenedor4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(lblnomDocenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar4))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         Inferior4.setBackground(new java.awt.Color(255, 255, 255));
@@ -719,7 +858,7 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contenedor4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblnomDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Inferior4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -727,8 +866,8 @@ public class Admin extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(contenedor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblnomDocente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Inferior4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
@@ -743,7 +882,7 @@ public class Admin extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+            .addGap(0, 442, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab5", jPanel5);
@@ -771,28 +910,100 @@ public class Admin extends javax.swing.JFrame {
             obj1.setString(2, txtCreditos.getText());
             //PARA INSERTAR, MODIFICAR Y ELIMINAR executeUpdate
             obj1.executeUpdate();
+            //BORRAR LOS CAMPOS DEL jTexTField
+            txtMateria.setText("");
+            txtCreditos.setText("");
             //MOSTRAR EN EL datagri
             mostrarDatosMateria("");
+            
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            PreparedStatement obj2 = cn.prepareStatement("INSERT INTO mysql.rubro (descripcion, porcentaje) VALUES (?,?)");
+            obj2.setString(1, txtRubro.getText());
+            obj2.setString(2, txtPoneracion.getText());
+            
+            obj2.executeUpdate();
+            //BORRAR LOS CAMPOS DEL jTexTField
+            txtRubro.setText("");
+            txtPoneracion.setText("");
+            
+            mostrarDatosRubro();
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnGuardar2ActionPerformed
-
+        
     private void btnGuardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            PreparedStatement obj3 = cn.prepareStatement("INSERT INTO mysql.alumno (nombre, apellidoP, apellidoM, grupo)  VALUES(?,?,?,?)");
+            obj3.setString(1, txtNombre.getText());
+            obj3.setString(2, txtApellidoP.getText());
+            obj3.setString(3, txtApellidoM.getText());
+            obj3.setString(4, txtGrupo.getText());
+            
+            obj3.executeUpdate();
+            
+            txtNombre.setText("");
+            txtApellidoP.setText("");
+            txtApellidoM.setText("");
+            txtGrupo.setText("");
+            
+            mostrarDatosAlumnos();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardar3ActionPerformed
 
     private void btnGuardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar4ActionPerformed
-        // TODO add your handling code here:
+        try {
+            PreparedStatement obj4 = cn.prepareStatement("INSERT INTO mysql.docente (nombre, usuario, password, email, pregunta, respuesta, admin) VALUES (?,?,?,?,?,?,?)");
+            obj4.setString(1, txtnombreDocente.getText());
+            obj4.setString(2,txtUsuario.getText() );
+            obj4.setString(3,txtPassword.getText() );
+            obj4.setString(4, txtEmail1.getText());
+            obj4.setString(5, txtPreg.getText());
+            obj4.setString(6, txtResp.getText());
+            obj4.setBoolean(7, chboxAdm.isSelected());
+            
+            obj4.executeUpdate();
+            
+            mostrarDatosUsuarios();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardar4ActionPerformed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         mostrarDatosMateria(txtBuscar1.getText());
     }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void txtGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGrupoActionPerformed
+
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
+
+    private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscar3ActionPerformed
+
+    private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscar4ActionPerformed
+
+    private void chboxAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chboxAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chboxAdmActionPerformed
 
 
     
@@ -843,6 +1054,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel Inferior3;
     private javax.swing.JPanel Inferior4;
     private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar2;
+    private javax.swing.JButton btnBuscar3;
+    private javax.swing.JButton btnBuscar4;
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnEliminar2;
     private javax.swing.JButton btnEliminar3;
@@ -855,10 +1069,10 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar2;
     private javax.swing.JButton btnModificar3;
     private javax.swing.JButton btnModificar4;
+    private javax.swing.JCheckBox chboxAdm;
     private javax.swing.JPanel contenedor1;
     private javax.swing.JPanel contenedor2;
     private javax.swing.JPanel contenedor3;
-    private javax.swing.JPanel contenedor4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -877,24 +1091,36 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel lblMateria;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblPass1;
+    private javax.swing.JLabel lblPass2;
     private javax.swing.JLabel lblPoneracion;
     private javax.swing.JLabel lblRubro;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuario1;
+    private javax.swing.JLabel lblUsuario2;
+    private javax.swing.JPanel lblnomDocente;
     private javax.swing.JTable tbAlumno;
     private javax.swing.JTable tbMateria;
     private javax.swing.JTable tbRubro;
     private javax.swing.JTable tbUsuario;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
-    private javax.swing.JTextField txtApellidoP2;
     private javax.swing.JTextField txtBuscar1;
+    private javax.swing.JTextField txtBuscar2;
+    private javax.swing.JTextField txtBuscar3;
+    private javax.swing.JTextField txtBuscar5;
     private javax.swing.JTextField txtCreditos;
+    private javax.swing.JTextField txtEmail1;
+    private javax.swing.JTextField txtGrupo;
     private javax.swing.JTextField txtMateria;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPoneracion;
+    private javax.swing.JTextField txtPreg;
+    private javax.swing.JTextField txtResp;
     private javax.swing.JTextField txtRubro;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtnombreDocente;
     // End of variables declaration//GEN-END:variables
 
     ///////////////////////////////////////////////////////////////////
