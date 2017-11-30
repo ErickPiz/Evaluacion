@@ -1,5 +1,10 @@
 package Principal;
 
+import Conexion.conectar;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /*
@@ -8,6 +13,8 @@ import javax.swing.JOptionPane;
 public class Acceso extends javax.swing.JFrame {
 
     Encriptador cripi = new Encriptador();
+    conectar cc = new conectar();
+    Connection cn = cc.conexion();
 
     public Acceso() {
         initComponents();
@@ -16,6 +23,7 @@ public class Acceso extends javax.swing.JFrame {
 
         chkEditar.setVisible(false);
     }
+
     //hola mundo
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -308,10 +316,61 @@ public class Acceso extends javax.swing.JFrame {
 //                    + u.isAdministrador());
     }//GEN-LAST:event_btnAccionActionPerformed
 
+    public void mostrarDatosUsuario(String valor) {
+        //IMPRMIR LOS TITULOS DE LA TABLA
+        
+        if (valor.equals("")) {
+            JOptionPane.showMessageDialog(null, "Usuario no Ingresado");
+        } else {
+            String sql = "SELECT * FROM mysql.docente WHERE nombre = '" + valor + "'";
+            JOptionPane.showMessageDialog(null,"asigno el sql");
+
+            //VARIABLE PARA MOSTRAR LOS DATOS EN EL while
+            String[] datos = new String[7];
+            JOptionPane.showMessageDialog(null,"creo 'datos'");
+            try {
+                //CREAR UN OBJ TIPO Statement
+                Statement st = cn.createStatement();
+                JOptionPane.showMessageDialog(null,"creo st");
+                //CREAR UN ResultSet ALMACENA LOS DATOS DE LA CONSULTA QUE SE REALIZARA
+                ResultSet rs = st.executeQuery(sql);
+                JOptionPane.showMessageDialog(null,"creo rs");
+                JOptionPane.showMessageDialog(null,sql+"    "+rs.getString(2));
+                //MOSTRAR LOS DATOS CON UN while
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(null,"entro al while");
+                    datos[0] = rs.getString(2);//Nombre
+                    datos[1] = rs.getString(3);//Usuario
+                    datos[2] = rs.getString(4);//Contraseña
+                    datos[3] = rs.getString(5);//Correo
+                    datos[4] = rs.getString(6);//Pregunta
+                    datos[5] = rs.getString(7);//Respuesta
+                    datos[6] = rs.getString(8);//Admin
+
+                    txtNombreAdd.setText(datos[0]);
+                    txtUsuarioAdd.setText(datos[1]);
+                    txtContrasenaAdd.setText(datos[2]);
+                    txtCorreoAdd.setText(datos[3]);
+                    txtPreguntaAdd.setText(datos[4]);
+                    txtRespuestaAdd.setText(datos[5]);
+                    if (datos[6].equals("1")) {
+                        chkAdminAdd.setSelected(true);
+                    } else {
+                        chkAdminAdd.setSelected(false);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de coneccion: " + ex.getMessage());
+            }
+        }
+    }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //cripi.desencriptar(ltfPreguntaAdd);
         //cripi.desencriptar(ltfRespuestaAdd);
-        String aBuscar = JOptionPane.showInputDialog("Escribe el Usuario a buscar");
+        mostrarDatosUsuario(JOptionPane.showInputDialog("Escribe el Usuario a buscar"));
         chkEditar.setVisible(true);
         /*
         if(SELECT COUNT USUARIO FROM DOCENTE WHERE USUARIO=aBusscar == 0){
