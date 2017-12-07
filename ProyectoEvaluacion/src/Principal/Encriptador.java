@@ -36,7 +36,7 @@ public class Encriptador {
     public void encriptar(JTextField txt){
         try {
             cifrador.init(Cipher.ENCRYPT_MODE,keyes);
-            byte[] aEncritar =txt.getText().getBytes();
+            //byte[] aEncritar =txt.getText().getBytes();
             texto=cifrador.doFinal(txt.getText().getBytes());
             txt.setText( String.valueOf(cifrador.doFinal(txt.getText().getBytes())));
         } catch (InvalidKeyException ex) {

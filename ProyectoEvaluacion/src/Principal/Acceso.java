@@ -2,6 +2,7 @@ package Principal;
 
 import Conexion.conectar;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,7 +36,7 @@ public class Acceso extends javax.swing.JFrame {
         txtContraAcceso = new javax.swing.JPasswordField();
         btnAcceder = new javax.swing.JButton();
         lblRecPass = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuarioAcceso = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         pnlAgregarUsuario = new javax.swing.JPanel();
         lblNombreAdd = new javax.swing.JLabel();
@@ -94,7 +95,7 @@ public class Acceso extends javax.swing.JFrame {
                     .addGroup(pnlAccesoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(txtUsuarioAcceso)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(pnlAccesoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +110,7 @@ public class Acceso extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsuarioAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblContraAcceso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,6 +158,11 @@ public class Acceso extends javax.swing.JFrame {
         });
 
         chkEditar.setText("Editar");
+        chkEditar.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                chkEditarStateChanged(evt);
+            }
+        });
         chkEditar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 chkEditarItemStateChanged(evt);
@@ -277,68 +283,63 @@ public class Acceso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccionActionPerformed
-        //cripi.encriptar(ltfPreguntaAdd);
-        //cripi.encriptar(ltfRespuestaAdd);        
+        if (txtContrasenaAdd.getText().equals(txtConfContraAdd.getText()) && !txtContrasenaAdd.getText().equals("")) {
+            try {
+                String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + txtUsuarioAdd.getText() + "'";
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                if (!rs.next()) {
+                    PreparedStatement obj4 = cn.prepareStatement("INSERT INTO mysql.docente (nombre, usuario, password, email, pregunta, respuesta, admin) VALUES (?,?,?,?,?,?,?)");
+                    obj4.setString(1, txtNombreAdd.getText());
+                    obj4.setString(2, txtUsuarioAdd.getText());
+                    obj4.setString(3, txtContrasenaAdd.getText());
+                    obj4.setString(4, txtCorreoAdd.getText());
+                    obj4.setString(5, txtPreguntaAdd.getText());
+                    obj4.setString(6, txtRespuestaAdd.getText());
+                    obj4.setBoolean(7, chkAdminAdd.isSelected());
 
-        if (txtContrasenaAdd.getText().equals(txtConfContraAdd.getText())) {
-        }
-        /*    
-            if(SELECT COUNT usuario FROM DOCENTE WHERE usuario=ltfUsuario.getTextFieldText()==0){
-                Usuario.Usuario u= new Usuario.Usuario(ltfNombreAdd.getTextFieldText(),ltfUsuarioAdd.getTextFieldText(),txtContrasenaAdd.getText(),ltfCorreoAdd.getTextFieldText(),ltfPreguntaAdd.getTextFieldText(),ltfRespuestaAdd.getTextFieldText(),chkAdminAdd.isSelected());
-                INSERT INTO DOCENTE(NOMBRE,USUARIO,CONTASEÑA,CORREO,PREGUNTA,RESPUESTA,ADMINISTADOR)VALUES
-                (
-                    u.getNombre(),
-                    u.getUsuario(),
-                    u.getContrasena(),
-                    u.getCorreo(),
-                    u.getPregunta(),
-                    u.getRespuesta(),
-                    u.isAdministrador(),
-                )
-                lipiar Csmpos
-                
+                    obj4.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Registro Creado", "ALTA", 3);
+
+                    txtNombreAdd.setText("");
+                    txtUsuarioAdd.setText("");
+                    txtContrasenaAdd.setText("");
+                    txtConfContraAdd.setText("");
+                    txtCorreoAdd.setText("");
+                    txtPreguntaAdd.setText("");
+                    txtRespuestaAdd.setText("");
+                    chkAdminAdd.setSelected(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"El usuario "+txtUsuarioAdd.getText()+" ya existe");
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar: " + ex.getMessage());
             }
-            else{
-                JOptionPane.showMessageDialog(this,"El usuario ya existe");
-            }
-              
+        } else {
+            JOptionPane.showMessageDialog(null, "Contraseñas No Validas");
         }
-        else{
-            JOptionPane.showMessageDialog(this,"La Contraseña no coincide");
-        }
-         */
-//            System.out.println(u.getNombre()+"\n"
-//                    + u.getUsuario()+"\n"
-//                    + u.getContrasena()+"\n"
-//                    + u.getCorreo()+"\n"
-//                    + u.getPregunta()+"\n"
-//                    + u.getRespuesta()+"\n"
-//                    + u.isAdministrador());
     }//GEN-LAST:event_btnAccionActionPerformed
 
     public void mostrarDatosUsuario(String valor) {
         //IMPRMIR LOS TITULOS DE LA TABLA
-        
+
         if (valor.equals("")) {
             JOptionPane.showMessageDialog(null, "Usuario no Ingresado");
         } else {
-            String sql = "SELECT * FROM mysql.docente WHERE nombre = '" + valor + "'";
-            JOptionPane.showMessageDialog(null,"asigno el sql");
 
             //VARIABLE PARA MOSTRAR LOS DATOS EN EL while
             String[] datos = new String[7];
-            JOptionPane.showMessageDialog(null,"creo 'datos'");
+            String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + valor + "'";
             try {
                 //CREAR UN OBJ TIPO Statement
                 Statement st = cn.createStatement();
-                JOptionPane.showMessageDialog(null,"creo st");
                 //CREAR UN ResultSet ALMACENA LOS DATOS DE LA CONSULTA QUE SE REALIZARA
                 ResultSet rs = st.executeQuery(sql);
-                JOptionPane.showMessageDialog(null,"creo rs");
-                JOptionPane.showMessageDialog(null,sql+"    "+rs.getString(2));
                 //MOSTRAR LOS DATOS CON UN while
                 if (rs.next()) {
-                    JOptionPane.showMessageDialog(null,"entro al while");
                     datos[0] = rs.getString(2);//Nombre
                     datos[1] = rs.getString(3);//Usuario
                     datos[2] = rs.getString(4);//Contraseña
@@ -358,8 +359,13 @@ public class Acceso extends javax.swing.JFrame {
                     } else {
                         chkAdminAdd.setSelected(false);
                     }
-                }
-                else{
+
+                    chkEditar.setVisible(true);
+                    txtNombreAdd.setEditable(false);
+                    txtUsuarioAdd.setEditable(false);
+                    setEnabledText(false);
+
+                } else {
                     JOptionPane.showMessageDialog(null, "Usuario no encontrado");
                 }
             } catch (SQLException ex) {
@@ -368,41 +374,25 @@ public class Acceso extends javax.swing.JFrame {
         }
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //cripi.desencriptar(ltfPreguntaAdd);
-        //cripi.desencriptar(ltfRespuestaAdd);
         mostrarDatosUsuario(JOptionPane.showInputDialog("Escribe el Usuario a buscar"));
-        chkEditar.setVisible(true);
-        /*
-        if(SELECT COUNT USUARIO FROM DOCENTE WHERE USUARIO=aBusscar == 0){
-            JOptionPane.showMessageDialog(this,"El usuario no existe");
-        }
-        else{
-            SELECT * FROM DOCENTE WHERE USUARIO=aBusscar
-            agregar los datos del select a los campos de la ventana y deshabilitar los campos
-            
-            cripi.encriptar(ltfPreguntaAdd);
-            cripi.encriptar(ltfRespuestaAdd);
-            
-            chkEditar.setVisible(true);
-        }
-        
-         */
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
         //new Administrador.Admin().setVisible(true);
         new Administrador.Admin().setVisible(true);
     }//GEN-LAST:event_btnAccederActionPerformed
-    public void setEnabledText(boolean bool) {
-        txtNombreAdd.setEnabled(bool);
-        txtUsuarioAdd.setEnabled(bool);
-        txtContrasenaAdd.setEnabled(bool);
-        txtConfContraAdd.setEnabled(bool);
-        txtCorreoAdd.setEnabled(bool);
-        txtPreguntaAdd.setEnabled(bool);
-        txtRespuestaAdd.setEnabled(bool);
-        chkAdminAdd.setEnabled(bool);
-    }
+
+    private void chkEditarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_chkEditarStateChanged
+        /*if (chkEditar.isSelected()) {
+            if (txtContrasenaAdd.getText().equals(JOptionPane.showInputDialog("Contraseña del Usuario"))) {
+                setEnabledText(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
+            }
+        } else {
+            setEnabledText(false);
+        }*/
+    }//GEN-LAST:event_chkEditarStateChanged
 
     private void chkEditarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkEditarItemStateChanged
         if (chkEditar.isSelected()) {
@@ -415,6 +405,14 @@ public class Acceso extends javax.swing.JFrame {
             setEnabledText(false);
         }
     }//GEN-LAST:event_chkEditarItemStateChanged
+    public void setEnabledText(boolean bool) {
+        txtContrasenaAdd.setEditable(bool);
+        txtConfContraAdd.setEditable(bool);
+        txtCorreoAdd.setEditable(bool);
+        txtPreguntaAdd.setVisible(bool);
+        txtRespuestaAdd.setVisible(bool);
+        chkAdminAdd.setEnabled(bool);
+    }
 
     /**
      * @param args the command line arguments
@@ -459,7 +457,6 @@ public class Acceso extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblConfContAdd;
     private javax.swing.JLabel lblContraAcceso;
     private javax.swing.JLabel lblContrasenaAdd;
@@ -478,6 +475,7 @@ public class Acceso extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreAdd;
     private javax.swing.JTextField txtPreguntaAdd;
     private javax.swing.JTextField txtRespuestaAdd;
+    private javax.swing.JTextField txtUsuarioAcceso;
     private javax.swing.JTextField txtUsuarioAdd;
     // End of variables declaration//GEN-END:variables
 }
