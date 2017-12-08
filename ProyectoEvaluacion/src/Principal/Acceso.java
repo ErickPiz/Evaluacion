@@ -17,12 +17,12 @@ public class Acceso extends javax.swing.JFrame {
 
     conectar cc = new conectar();
     Connection cn = cc.conexion();
+    public Usuario.Usuario u;
 
     public Acceso() {
         initComponents();
 
         setLocationRelativeTo(null);
-
         btnEditar.setVisible(false);
     }
 
@@ -331,44 +331,25 @@ public class Acceso extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnAccionActionPerformed
-
-    public void mostrarDatosUsuario(String valor) {
-        //IMPRMIR LOS TITULOS DE LA TABLA
-
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String valor = JOptionPane.showInputDialog("Escribe el Usuario a buscar");
         if (valor.equals("")) {
             JOptionPane.showMessageDialog(null, "Usuario no Ingresado");
         } else {
 
-            //VARIABLE PARA MOSTRAR LOS DATOS EN EL while
-            String[] datos = new String[7];
-
             String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + valor + "'";
             try {
-                //CREAR UN OBJ TIPO Statement
                 Statement st = cn.createStatement();
-                //CREAR UN ResultSet ALMACENA LOS DATOS DE LA CONSULTA QUE SE REALIZARA
                 ResultSet rs = st.executeQuery(sql);
-                //MOSTRAR LOS DATOS CON UN while
                 if (rs.next()) {
-                    datos[0] = rs.getString(2);//Nombre
-                    datos[1] = rs.getString(3);//Usuario
-                    datos[2] = rs.getString(4);//Contraseña
-                    datos[3] = rs.getString(5);//Correo
-                    datos[4] = rs.getString(6);//Pregunta
-                    datos[5] = rs.getString(7);//Respuesta
-                    datos[6] = rs.getString(8);//Admin
 
-                    txtNombreAdd.setText(datos[0]);
-                    txtUsuarioAdd.setText(datos[1]);
-                    txtContrasenaAdd.setText(datos[2]);
-                    txtCorreoAdd.setText(datos[3]);
-                    txtPreguntaAdd.setText(datos[4]);
-                    txtRespuestaAdd.setText(datos[5]);
-                    if (datos[6].equals("1")) {
-                        chkAdminAdd.setSelected(true);
-                    } else {
-                        chkAdminAdd.setSelected(false);
-                    }
+                    txtNombreAdd.setText(rs.getString(2));
+                    txtUsuarioAdd.setText(rs.getString(3));
+                    txtContrasenaAdd.setText(rs.getString(4));
+                    txtCorreoAdd.setText(rs.getString(5));
+                    txtPreguntaAdd.setText(rs.getString(6));
+                    txtRespuestaAdd.setText(rs.getString(7));
+                    chkAdminAdd.setSelected(rs.getBoolean(8));
 
                     btnEditar.setVisible(true);
                     txtNombreAdd.setEditable(false);
@@ -382,9 +363,6 @@ public class Acceso extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error de coneccion: " + ex.getMessage());
             }
         }
-    }
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        mostrarDatosUsuario(JOptionPane.showInputDialog("Escribe el Usuario a buscar"));
         btnAccion.setText("Nuevo");
         txtConfContraAdd.setText("");
         btnEditar.setText("Editar");
@@ -392,18 +370,25 @@ public class Acceso extends javax.swing.JFrame {
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
         try {
-            String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + txtUsuarioAcceso.getText() + "' and password='" + txtContraAcceso.getText() + "'";
+            String sql = "SELECT usuario,password,admin FROM mysql.docente WHERE usuario = '" + txtUsuarioAcceso.getText() + "' and password='" + txtContraAcceso.getText() + "'";
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                
-            }
-            else{
-            JOptionPane.showMessageDialog(null,"Usuario y/o contraseña incorrectos");
+                u= new Usuario.Usuario(rs.getString(1),rs.getString(2),rs.getBoolean(3));
+                if(u.isAdministrador()){
+                    Administrador.Admin a =new Administrador.Admin();
+                    a.setVisible(true);
+                    this.setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Inserte aqui las ventanas e fer");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");
             }
             //new Administrador.Admin().setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(Acceso.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnAccederActionPerformed
 

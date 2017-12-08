@@ -32,4 +32,18 @@ public class Usuario {
     public boolean isAdministrador() {
         return administrador;
     }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
+    
+    
 }
