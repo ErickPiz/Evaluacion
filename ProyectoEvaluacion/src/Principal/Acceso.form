@@ -140,6 +140,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUsuarioAcceso">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>

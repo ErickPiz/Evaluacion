@@ -76,6 +76,8 @@ public class Acceso extends javax.swing.JFrame {
 
         lblRecPass.setText("!!Olvide mi contraseña!!");
 
+        txtUsuarioAcceso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Usuario");
 
