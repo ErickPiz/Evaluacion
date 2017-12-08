@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -180,39 +181,34 @@
                                   <Component id="txtRespuestaAdd" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Component id="lblCorreoAdd" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblCorreoAdd" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkAdminAdd" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnEditar" min="-2" pref="131" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnAccion" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Component id="btnBuscar" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtPreguntaAdd" max="32767" attributes="0"/>
+                                  <Component id="txtNombreAdd" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="chkAdminAdd" min="-2" max="-2" attributes="0"/>
-                                          <Component id="chkEditar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnAccion" min="-2" pref="139" max="-2" attributes="0"/>
-                                          <Component id="btnBuscar" min="-2" pref="139" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtPreguntaAdd" max="32767" attributes="0"/>
-                                          <Component id="txtNombreAdd" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblContrasenaAdd" min="-2" pref="137" max="-2" attributes="0"/>
-                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblConfContAdd" min="-2" pref="139" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtContrasenaAdd" min="-2" pref="139" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtConfContraAdd" min="-2" pref="139" max="-2" attributes="0"/>
+                                      <Component id="lblContrasenaAdd" min="-2" pref="137" max="-2" attributes="0"/>
+                                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblConfContAdd" min="-2" pref="139" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtContrasenaAdd" min="-2" pref="139" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtConfContraAdd" min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -262,17 +258,17 @@
                               <Component id="txtRespuestaAdd" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="chkAdminAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="chkEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -348,13 +344,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="chkEditar">
+            <Component class="javax.swing.JButton" name="btnEditar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
               </Properties>
               <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="chkEditarStateChanged"/>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="chkEditarItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

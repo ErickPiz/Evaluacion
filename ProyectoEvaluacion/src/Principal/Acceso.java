@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -13,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class Acceso extends javax.swing.JFrame {
 
-    Encriptador cripi = new Encriptador();
     conectar cc = new conectar();
     Connection cn = cc.conexion();
 
@@ -22,7 +23,7 @@ public class Acceso extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
 
-        chkEditar.setVisible(false);
+        btnEditar.setVisible(false);
     }
 
     //hola mundo
@@ -56,9 +57,10 @@ public class Acceso extends javax.swing.JFrame {
         chkAdminAdd = new javax.swing.JCheckBox();
         btnAccion = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        chkEditar = new javax.swing.JCheckBox();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         lblContraAcceso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblContraAcceso.setText("Contraseña");
@@ -157,15 +159,10 @@ public class Acceso extends javax.swing.JFrame {
             }
         });
 
-        chkEditar.setText("Editar");
-        chkEditar.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                chkEditarStateChanged(evt);
-            }
-        });
-        chkEditar.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                chkEditarItemStateChanged(evt);
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -189,31 +186,28 @@ public class Acceso extends javax.swing.JFrame {
                         .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRespuestaAdd)
                             .addComponent(txtRespuestaAdd)))
+                    .addComponent(lblCorreoAdd)
                     .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
                         .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCorreoAdd)
-                            .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
-                                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkAdminAdd)
-                                    .addComponent(chkEditar))
-                                .addGap(40, 40, 40)
-                                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAccion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
-                                .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPreguntaAdd)
-                                    .addComponent(txtNombreAdd, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAgregarUsuarioLayout.createSequentialGroup()
-                                        .addComponent(lblContrasenaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblConfContAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
-                                .addComponent(txtContrasenaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtConfContraAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(chkAdminAdd)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                        .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPreguntaAdd)
+                            .addComponent(txtNombreAdd, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAgregarUsuarioLayout.createSequentialGroup()
+                                .addComponent(lblContrasenaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblConfContAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlAgregarUsuarioLayout.createSequentialGroup()
+                        .addComponent(txtContrasenaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtConfContraAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlAgregarUsuarioLayout.setVerticalGroup(
@@ -251,15 +245,15 @@ public class Acceso extends javax.swing.JFrame {
                         .addComponent(lblRespuestaAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRespuestaAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAccion)
-                    .addComponent(chkAdminAdd))
+                    .addComponent(chkAdminAdd)
+                    .addComponent(btnAccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlAgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
-                    .addComponent(chkEditar))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(btnEditar))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Agregar Usuario", pnlAgregarUsuario);
@@ -281,45 +275,58 @@ public class Acceso extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void setNullText() {
+        txtNombreAdd.setEditable(true);
+        txtUsuarioAdd.setEditable(true);
+        txtNombreAdd.setText("");
+        txtUsuarioAdd.setText("");
+        txtContrasenaAdd.setText("");
+        txtConfContraAdd.setText("");
+        txtCorreoAdd.setText("");
+        txtPreguntaAdd.setText("");
+        txtRespuestaAdd.setText("");
+        chkAdminAdd.setSelected(false);
+        setEnabledText(true);
 
+    }
     private void btnAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccionActionPerformed
-        if (txtContrasenaAdd.getText().equals(txtConfContraAdd.getText()) && !txtContrasenaAdd.getText().equals("")) {
-            try {
-                String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + txtUsuarioAdd.getText() + "'";
-                Statement st = cn.createStatement();
-                ResultSet rs = st.executeQuery(sql);
-                if (!rs.next()) {
-                    PreparedStatement obj4 = cn.prepareStatement("INSERT INTO mysql.docente (nombre, usuario, password, email, pregunta, respuesta, admin) VALUES (?,?,?,?,?,?,?)");
-                    obj4.setString(1, txtNombreAdd.getText());
-                    obj4.setString(2, txtUsuarioAdd.getText());
-                    obj4.setString(3, txtContrasenaAdd.getText());
-                    obj4.setString(4, txtCorreoAdd.getText());
-                    obj4.setString(5, txtPreguntaAdd.getText());
-                    obj4.setString(6, txtRespuestaAdd.getText());
-                    obj4.setBoolean(7, chkAdminAdd.isSelected());
+        if (btnAccion.getText().equals("Agregar")) {
+            if (txtContrasenaAdd.getText().equals(txtConfContraAdd.getText()) && !txtContrasenaAdd.getText().equals("")) {
+                try {
+                    String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + txtUsuarioAdd.getText() + "'";
+                    Statement st = cn.createStatement();
+                    ResultSet rs = st.executeQuery(sql);
+                    if (!rs.next()) {
+                        PreparedStatement obj4 = cn.prepareStatement("INSERT INTO mysql.docente (nombre, usuario, password, email, pregunta, respuesta, admin) VALUES (?,?,?,?,?,?,?)");
+                        obj4.setString(1, txtNombreAdd.getText());
+                        obj4.setString(2, txtUsuarioAdd.getText());
+                        obj4.setString(3, txtContrasenaAdd.getText());
+                        obj4.setString(4, txtCorreoAdd.getText());
+                        obj4.setString(5, txtPreguntaAdd.getText());
+                        obj4.setString(6, txtRespuestaAdd.getText());
+                        obj4.setBoolean(7, chkAdminAdd.isSelected());
 
-                    obj4.executeUpdate();
+                        obj4.executeUpdate();
 
-                    JOptionPane.showMessageDialog(null, "Registro Creado", "ALTA", 3);
+                        JOptionPane.showMessageDialog(null, "Registro Creado", "ALTA", 3);
 
-                    txtNombreAdd.setText("");
-                    txtUsuarioAdd.setText("");
-                    txtContrasenaAdd.setText("");
-                    txtConfContraAdd.setText("");
-                    txtCorreoAdd.setText("");
-                    txtPreguntaAdd.setText("");
-                    txtRespuestaAdd.setText("");
-                    chkAdminAdd.setSelected(false);
+                        setNullText();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El usuario " + txtUsuarioAdd.getText() + " ya existe");
+                    }
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al guardar: " + ex.getMessage());
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"El usuario "+txtUsuarioAdd.getText()+" ya existe");
-                }
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al guardar: " + ex.getMessage());
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseñas No Validas");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Contraseñas No Validas");
+            setNullText();
+            btnAccion.setText("Agregar");
+            btnEditar.setVisible(false);
+
         }
     }//GEN-LAST:event_btnAccionActionPerformed
 
@@ -332,6 +339,7 @@ public class Acceso extends javax.swing.JFrame {
 
             //VARIABLE PARA MOSTRAR LOS DATOS EN EL while
             String[] datos = new String[7];
+
             String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + valor + "'";
             try {
                 //CREAR UN OBJ TIPO Statement
@@ -360,7 +368,7 @@ public class Acceso extends javax.swing.JFrame {
                         chkAdminAdd.setSelected(false);
                     }
 
-                    chkEditar.setVisible(true);
+                    btnEditar.setVisible(true);
                     txtNombreAdd.setEditable(false);
                     txtUsuarioAdd.setEditable(false);
                     setEnabledText(false);
@@ -375,36 +383,53 @@ public class Acceso extends javax.swing.JFrame {
     }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         mostrarDatosUsuario(JOptionPane.showInputDialog("Escribe el Usuario a buscar"));
+        btnAccion.setText("Nuevo");
+        txtConfContraAdd.setText("");
+        btnEditar.setText("Editar");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        //new Administrador.Admin().setVisible(true);
-        new Administrador.Admin().setVisible(true);
+        try {
+            String sql = "SELECT * FROM mysql.docente WHERE usuario = '" + txtUsuarioAcceso.getText() + "' and password='" + txtContraAcceso.getText() + "'";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                
+            }
+            else{
+            JOptionPane.showMessageDialog(null,"Usuario y/o contraseña incorrectos");
+            }
+            //new Administrador.Admin().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Acceso.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAccederActionPerformed
 
-    private void chkEditarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_chkEditarStateChanged
-        /*if (chkEditar.isSelected()) {
-            if (txtContrasenaAdd.getText().equals(JOptionPane.showInputDialog("Contraseña del Usuario"))) {
-                setEnabledText(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
-            }
-        } else {
-            setEnabledText(false);
-        }*/
-    }//GEN-LAST:event_chkEditarStateChanged
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-    private void chkEditarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkEditarItemStateChanged
-        if (chkEditar.isSelected()) {
+        if (btnEditar.getText().equals("Editar")) {
             if (txtContrasenaAdd.getText().equals(JOptionPane.showInputDialog("Contraseña del Usuario"))) {
                 setEnabledText(true);
+                btnEditar.setText("Guardar");
             } else {
                 JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
             }
+        } else if (txtContrasenaAdd.getText().equals(txtConfContraAdd.getText()) && !txtContrasenaAdd.getText().equals("")) {
+            try {
+                Statement st;
+                st = cn.createStatement();
+                JOptionPane.showMessageDialog(null, "UPDATE `mysql`.`docente` SET `password`='" + txtContrasenaAdd.getText() + "',`email`='" + txtCorreoAdd.getText() + "',`pregunta`='" + txtPreguntaAdd.getText() + "',`respuesta`='" + txtRespuestaAdd.getText() + "',`admin`=" + chkAdminAdd.isSelected() + " WHERE  `usuario`='" + txtUsuarioAdd.getText() + "';");
+                st.executeUpdate("UPDATE `mysql`.`docente` SET `nombre`='" + txtNombreAdd.getText() + "',`usuario`='" + txtUsuarioAdd.getText() + "',`password`='" + txtContrasenaAdd.getText() + "',`email`='" + txtCorreoAdd.getText() + "',`pregunta`='" + txtPreguntaAdd.getText() + "',`respuesta`='" + txtRespuestaAdd.getText() + "',`admin`=" + chkAdminAdd.isSelected() + " WHERE  `usuario`='" + txtUsuarioAdd.getText() + "';");
+                JOptionPane.showMessageDialog(this, "Se Actualizo Usuario " + txtUsuarioAdd.getText());
+                setEnabledText(false);
+                btnEditar.setText("Editar (Inactivo)");
+            } catch (SQLException ex) {
+                Logger.getLogger(Acceso.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            setEnabledText(false);
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
         }
-    }//GEN-LAST:event_chkEditarItemStateChanged
+    }//GEN-LAST:event_btnEditarActionPerformed
     public void setEnabledText(boolean bool) {
         txtContrasenaAdd.setEditable(bool);
         txtConfContraAdd.setEditable(bool);
@@ -418,11 +443,6 @@ public class Acceso extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -430,19 +450,11 @@ public class Acceso extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Acceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Acceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Acceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Acceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Acceso().setVisible(true);
             }
@@ -453,8 +465,8 @@ public class Acceso extends javax.swing.JFrame {
     private javax.swing.JButton btnAcceder;
     private javax.swing.JButton btnAccion;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JCheckBox chkAdminAdd;
-    private javax.swing.JCheckBox chkEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblConfContAdd;
