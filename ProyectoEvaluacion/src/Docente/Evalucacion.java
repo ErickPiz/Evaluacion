@@ -1,4 +1,4 @@
-package Principal;
+package Docente;
 
 import Conexion.conectar;
 import java.sql.Connection;

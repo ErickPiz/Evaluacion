@@ -1,6 +1,7 @@
 package Principal;
 
 import Conexion.conectar;
+import Docente.Docente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -258,7 +259,7 @@ public class Acceso extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Agregar Usuario", pnlAgregarUsuario);
+        jTabbedPane1.addTab("Control de Usuarios", pnlAgregarUsuario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -381,7 +382,9 @@ public class Acceso extends javax.swing.JFrame {
                     this.setVisible(false);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Inserte aqui las ventanas e fer");
+                     Docente d =new Docente(u);
+                    d.setVisible(true);
+                    this.setVisible(false);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");
@@ -405,7 +408,6 @@ public class Acceso extends javax.swing.JFrame {
             try {
                 Statement st;
                 st = cn.createStatement();
-                JOptionPane.showMessageDialog(null, "UPDATE `mysql`.`docente` SET `password`='" + txtContrasenaAdd.getText() + "',`email`='" + txtCorreoAdd.getText() + "',`pregunta`='" + txtPreguntaAdd.getText() + "',`respuesta`='" + txtRespuestaAdd.getText() + "',`admin`=" + chkAdminAdd.isSelected() + " WHERE  `usuario`='" + txtUsuarioAdd.getText() + "';");
                 st.executeUpdate("UPDATE `mysql`.`docente` SET `nombre`='" + txtNombreAdd.getText() + "',`usuario`='" + txtUsuarioAdd.getText() + "',`password`='" + txtContrasenaAdd.getText() + "',`email`='" + txtCorreoAdd.getText() + "',`pregunta`='" + txtPreguntaAdd.getText() + "',`respuesta`='" + txtRespuestaAdd.getText() + "',`admin`=" + chkAdminAdd.isSelected() + " WHERE  `usuario`='" + txtUsuarioAdd.getText() + "';");
                 JOptionPane.showMessageDialog(this, "Se Actualizo Usuario " + txtUsuarioAdd.getText());
                 setEnabledText(false);

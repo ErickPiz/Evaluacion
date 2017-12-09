@@ -20,7 +20,7 @@ public class Admin extends javax.swing.JFrame {
         mostrarDatosMateria("");
         mostrarDatosRubro();
         mostrarDatosAlumnos();
-        mostrarDatosUsuarios();
+        mostrarDatosUsuarios();    
     }
     public boolean estaVacio(){
         return txtBuscar1.equals("");
@@ -1240,7 +1240,7 @@ public class Admin extends javax.swing.JFrame {
 
     ///////////////////////////////////////////////////////////////////
     conectar cc = new conectar();
-    Connection cn = cc.conexion(); 
+    Connection cn = cc.conexion();
     
     /*    MySQL_Conexion cc = new MySQL_Conexion();
     Connection cn = cc.getConexion();*/ 
