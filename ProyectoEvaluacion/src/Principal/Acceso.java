@@ -22,7 +22,6 @@ public class Acceso extends javax.swing.JFrame {
 
     public Acceso() {
         initComponents();
-
         setLocationRelativeTo(null);
         btnEditar.setVisible(false);
     }

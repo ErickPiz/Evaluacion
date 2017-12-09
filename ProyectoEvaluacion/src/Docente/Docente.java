@@ -14,16 +14,16 @@ import java.sql.Connection;
  * @author Piz
  */
 public class Docente extends javax.swing.JFrame {
-    
+
     conectar cc = new conectar();
     Connection cn = cc.conexion();
     Usuario u;
-    
+
     public Docente(Usuario u) {
         initComponents();
-        this.u=u;
+        this.u = u;
         setLocationRelativeTo(null);
-        this.setTitle("Usuario "+ u.getUsuario());
+        this.setTitle("Usuario " + u.getUsuario());
     }
 
     @SuppressWarnings("unchecked")
@@ -67,6 +67,7 @@ public class Docente extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
@@ -82,6 +83,11 @@ public class Docente extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listCursos);
 
         jButton2.setText("Evaluar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
 
@@ -163,7 +169,7 @@ public class Docente extends javax.swing.JFrame {
 
         lblPonderacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPonderacion.setForeground(new java.awt.Color(255, 255, 255));
-        lblPonderacion.setText("Poneración");
+        lblPonderacion.setText("Ponderación");
 
         txtR1.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         txtR1.addActionListener(new java.awt.event.ActionListener() {
@@ -369,6 +375,10 @@ public class Docente extends javax.swing.JFrame {
     private void txtR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtR2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtR2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new Evaluacion(this.u,listCursos.getSelectedValue()).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
